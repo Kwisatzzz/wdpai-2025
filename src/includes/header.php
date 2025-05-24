@@ -9,7 +9,9 @@
 <body class="dashboard-body">
 
 <header class="site-header">
-  <div class="logo">FlashAI <span class="badge">Beta</span></div>
+  <a href="dashboard.php" class="logo">
+    FlashAI <span class="badge">Beta</span>
+  </a>
   
   <nav class="nav">
     <a href="dashboard.php">Dashboard</a>

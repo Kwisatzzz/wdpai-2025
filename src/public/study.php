@@ -5,6 +5,31 @@ require_once '../includes/db.php';
 
 $db = Database::connect();
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rate'], $_POST['card_id'], $_GET['deck_id'])) {
+    $valid = ['bad', 'ok', 'good'];
+    $status = $_POST['rate'];
+    $card_id = (int) $_POST['card_id'];
+    $deck_id = (int) $_GET['deck_id'];
+
+    if (in_array($status, $valid)) {
+        $stmt = $db->prepare("
+            INSERT INTO flashcard_progress (user_id, card_id, status)
+            VALUES (:uid, :cid, :status)
+            ON CONFLICT (user_id, card_id)
+            DO UPDATE SET status = EXCLUDED.status, updated_at = NOW()
+        ");
+        $stmt->execute([
+            ':uid' => $_SESSION['user_id'],
+            ':cid' => $card_id,
+            ':status' => $status
+        ]);
+    }
+
+    $nextIndex = isset($_GET['i']) ? (int)$_GET['i'] + 1 : 1;
+    header("Location: study.php?deck_id=$deck_id&i=$nextIndex");
+    exit;
+}
+
 if (!isset($_GET['deck_id']) || !is_numeric($_GET['deck_id'])) {
     die("Invalid deck ID.");
 }
@@ -19,14 +44,26 @@ if (!$deck) {
     die("Deck not found or access denied.");
 }
 
-$stmt = $db->prepare("SELECT * FROM flashcards WHERE deck_id = :deck_id ORDER BY card_id ASC");
-$stmt->execute([':deck_id' => $deck_id]);
+$stmt = $db->prepare("UPDATE decks SET last_studied_at = NOW() WHERE deck_id = :id");
+$stmt->execute([':id' => $deck_id]);
+
+$stmt = $db->prepare("
+  SELECT f.* FROM flashcards f
+  LEFT JOIN flashcard_progress p 
+    ON f.card_id = p.card_id AND p.user_id = :uid
+  WHERE f.deck_id = :deck_id
+    AND (p.status IS NULL OR p.status != 'good')
+  ORDER BY f.card_id ASC
+");
+$stmt->execute([
+  ':deck_id' => $deck_id,
+  ':uid' => $_SESSION['user_id']
+]);
 $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $total = count($cards);
-
 if ($total === 0) {
-    die("This deck has no flashcards yet.");
+    die("🎉 You've studied all cards in this deck! <a href='my_decks.php'>Return to My Decks</a>");
 }
 
 $index = isset($_GET['i']) ? (int) $_GET['i'] : 0;
@@ -54,21 +91,12 @@ include '../includes/header.php';
     <h2>Back</h2>
     <p><?php echo htmlspecialchars($current['back']); ?></p>
 
-    <div style="margin-top: 20px;">
-      <?php if ($index > 0): ?>
-        <a href="?deck_id=<?php echo $deck_id; ?>&i=<?php echo $index - 1; ?>">
-          <button>Previous</button>
-        </a>
-      <?php endif; ?>
-
-      <?php if ($index < $total - 1): ?>
-        <a href="?deck_id=<?php echo $deck_id; ?>&i=<?php echo $index + 1; ?>">
-          <button>Next</button>
-        </a>
-      <?php else: ?>
-        <p><a href="my_decks.php">🎉 You've reached the end!</a></p>
-      <?php endif; ?>
-    </div>
+    <form method="post" style="margin-top: 20px; display: flex; gap: 10px;">
+      <input type="hidden" name="card_id" value="<?php echo $current['card_id']; ?>">
+      <button name="rate" value="bad">Bad</button>
+      <button name="rate" value="ok">Ok</button>
+      <button name="rate" value="good">Good</button>
+    </form>
   </div>
 </section>
 

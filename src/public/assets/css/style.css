@@ -124,8 +124,13 @@ button:hover {
   font-size: 24px;
   font-weight: bold;
   color: #4f46e5;
+  text-decoration: none;
 }
 
+.logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
 .badge {
   background: #e0e7ff;
   color: #4f46e5;
@@ -376,4 +381,73 @@ button:hover {
 .delete-x-btn:hover {
   color: #c53030;
   background: transparent;
+}
+
+.recent-deck-preview {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.study-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #4f46e5;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.study-link:hover {
+  background-color: #4338ca;
+}
+
+.progress-bar {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 14px;
+  margin: 10px 0;
+}
+
+.progress {
+  background: #4f46e5;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+form button[name="rate"] {
+  flex: 1;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+form button[value="bad"] {
+  background-color: #ef4444;
+  color: white;
+}
+
+form button[value="ok"] {
+  background-color: #facc15;
+  color: #333;
+}
+
+form button[value="good"] {
+  background-color: #10b981;
+  color: white;
+}
+
+form button:hover {
+  opacity: 0.9;
 }

@@ -18,7 +18,8 @@ CREATE TABLE decks (
     deck_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_studied_at TIMESTAMP
 );
 
 CREATE TABLE flashcards (
@@ -27,4 +28,12 @@ CREATE TABLE flashcards (
     front TEXT NOT NULL,
     back TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE flashcard_progress (
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+    card_id INT REFERENCES flashcards(card_id) ON DELETE CASCADE,
+    status VARCHAR(10) NOT NULL CHECK (status IN ('bad', 'ok', 'good')),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, card_id)
 );
