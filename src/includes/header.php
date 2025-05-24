@@ -17,7 +17,6 @@
     <a href="dashboard.php">Dashboard</a>
     <a href="my_decks.php">My Decks</a>
     <a href="#">AI Assistant</a>
-    <a href="#">Progress</a>
   </nav>
 
   <div class="header-right">

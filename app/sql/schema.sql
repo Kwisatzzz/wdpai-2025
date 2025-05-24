@@ -34,6 +34,8 @@ CREATE TABLE flashcard_progress (
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     card_id INT REFERENCES flashcards(card_id) ON DELETE CASCADE,
     status VARCHAR(10) NOT NULL CHECK (status IN ('bad', 'ok', 'good')),
+    seen_good_count INT DEFAULT 0,
+    next_review_at TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, card_id)
 );

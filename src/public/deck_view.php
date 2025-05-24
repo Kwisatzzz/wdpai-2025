@@ -58,17 +58,39 @@ include '../includes/header.php';
   <?php else: ?>
     <ul class="flashcard-list">
     <?php foreach ($cards as $card): ?>
+      <?php
+        $stmt = $db->prepare("
+          SELECT status, seen_good_count, next_review_at
+          FROM flashcard_progress
+          WHERE user_id = :uid AND card_id = :cid
+        ");
+        $stmt->execute([
+          ':uid' => $_SESSION['user_id'],
+          ':cid' => $card['card_id']
+        ]);
+        $progress = $stmt->fetch(PDO::FETCH_ASSOC);
+      ?>
       <li class="flashcard" data-id="<?php echo $card['card_id']; ?>">
         <button class="delete-x-btn" data-id="<?php echo $card['card_id']; ?>" title="Delete">&times;</button>
         <div class="flashcard-text">
           <strong>Front:</strong> <span class="editable front"><?php echo htmlspecialchars($card['front']); ?></span><br />
           <strong>Back:</strong> <span class="editable back"><?php echo htmlspecialchars($card['back']); ?></span>
+
+          <?php if ($progress): ?>
+            <div class="flashcard-status">
+              <small>Status: <strong><?php echo htmlspecialchars($progress['status']); ?></strong></small><br />
+              <?php if ($progress['status'] === 'good'): ?>
+                <small>Seen good: <?php echo (int)$progress['seen_good_count']; ?>×</small><br />
+                <small>Next review: <?php echo date('Y-m-d', strtotime($progress['next_review_at'])); ?></small>
+              <?php endif; ?>
+            </div>
+          <?php endif; ?>
         </div>
       </li>
     <?php endforeach; ?>
-
     </ul>
   <?php endif; ?>
 </section>
+
 <script src="assets/js/flashcards.js"></script>
 <?php include '../includes/footer.php'; ?>

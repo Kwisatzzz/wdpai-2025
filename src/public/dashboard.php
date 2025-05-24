@@ -66,7 +66,7 @@ include '../includes/header.php';
   </div>
 
   <div class="card">
-    <h2>AI Enhancement</h2>
+    <h2>AI Assistant</h2>
   </div>
 </section>
 
