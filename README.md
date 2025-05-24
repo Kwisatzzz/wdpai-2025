@@ -1,1 +1,1 @@
-test
+- przenieść Footery/header do inclueds, bo teraz są na twardziutko
