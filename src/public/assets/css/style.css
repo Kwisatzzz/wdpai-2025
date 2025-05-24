@@ -345,3 +345,35 @@ button:hover {
 .add-deck-btn:hover {
   background-color: #4338ca;
 }
+
+.flashcard {
+  position: relative;
+  padding: 16px;
+  padding-top: 32px;
+  background: #fff;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+.delete-x-btn {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+  appearance: none;
+  outline: none;
+}
+
+.delete-x-btn:hover {
+  color: #c53030;
+  background: transparent;
+}

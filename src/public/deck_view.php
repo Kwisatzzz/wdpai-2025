@@ -57,14 +57,18 @@ include '../includes/header.php';
     <p>No flashcards yet.</p>
   <?php else: ?>
     <ul class="flashcard-list">
-      <?php foreach ($cards as $card): ?>
-        <li class="flashcard">
-          <strong>Front:</strong> <?php echo htmlspecialchars($card['front']); ?><br />
-          <strong>Back:</strong> <?php echo htmlspecialchars($card['back']); ?>
-        </li>
-      <?php endforeach; ?>
+    <?php foreach ($cards as $card): ?>
+      <li class="flashcard" data-id="<?php echo $card['card_id']; ?>">
+        <button class="delete-x-btn" data-id="<?php echo $card['card_id']; ?>" title="Delete">&times;</button>
+        <div class="flashcard-text">
+          <strong>Front:</strong> <span class="editable front"><?php echo htmlspecialchars($card['front']); ?></span><br />
+          <strong>Back:</strong> <span class="editable back"><?php echo htmlspecialchars($card['back']); ?></span>
+        </div>
+      </li>
+    <?php endforeach; ?>
+
     </ul>
   <?php endif; ?>
 </section>
-
+<script src="assets/js/flashcards.js"></script>
 <?php include '../includes/footer.php'; ?>
