@@ -17,7 +17,7 @@
   <nav class="nav">
     <a href="dashboard.php">Dashboard</a>
     <a href="my_decks.php">My Decks</a>
-    <a href="#">AI Assistant</a>
+    <a href="ai_assistant.php">AI Assistant</a>
   </nav>
 
   <div class="header-right">

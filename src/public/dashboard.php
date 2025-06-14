@@ -65,8 +65,9 @@ include '../includes/header.php';
     <?php endif; ?>
   </div>
 
-  <div class="card">
+  <div class="card clickable-card" onclick="window.location.href='ai_assistant.php'">
     <h2>AI Assistant</h2>
+    <p>Work in progress - available soon for Pro users.</p>
   </div>
 </section>
 
