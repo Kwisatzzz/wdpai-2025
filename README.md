@@ -25,17 +25,18 @@ Domyślna konfiguracja bazy danych znajduje się w `app/sql/schema.sql` i jest �
 - **Tworzenie talii** – strona `deck_creation.php` pozwala dodać nową talię do bazy.
 - **Moje talie** – `my_decks.php` wyświetla listę talii z opcjami rozpoczczenia nauki, modyfikacji oraz usunięcia.
 - **Widok talii** – `deck_view.php` umożliwia dodawanie nowych fiszek, ich edycję (dwuklik, obsługa przez JS) i usuwanie.
-- **Nauka** – `study.php` prezentuje fiszki z wybranej talii i pozwala ocenić odpowiedzi jako `Bad`, `Ok` lub `Good`. Przy ocenie `Good` termin kolejnej powtórki jest wydłużany (tabela `flashcard_progress`).
+- **Nauka** – `study.php` prezentuje fiszki z wybranej talii i pozwala ocenić odpowiedzi jako `Bad`, `Ok` lub `Good`. Przy ocenie `Good` termin kolejnej powtórki jest wydłużany (tabela `flashcard_progress`), symulując algorytm spaced repetition.
 - **Wylogowanie** – skrypt `logout.php` usuwa sesję użytkownika.
-- **Responsywny interfejs** – proste style w `assets/css/style.css` oraz skrypty JS do obsługi edycji i menu.
-- **Placeholder** pod panel "AI Assistant" i stronę "Upgrade to Pro" (niezaimplementowane w aktualnej wersji).
+- **Responsywny interfejs** – proste style w `assets/css/style.css` oraz skrypty JS do obsługi edycji.
 - **AI Assistant** – funkcja w przygotowaniu. Strona informuje, że będzie dostępna wkrótce dla użytkowników Pro.
 
 ## Struktura katalogów
 
+- `app/sql` – schemat bazy danych inicjalizowany przy pierwszym uruchomieniu kontenera (docker-entry-point).
+- `docs/images` – zdjęcia dostępne w README.
 - `src/public` – pliki dostępne z poziomu serwera WWW (PHP, zasoby statyczne).
 - `src/includes` – wspólne fragmenty (nagłówek, stopka, połączenie z bazą, autoryzacja).
-- `src/classes` – klasy PHP (użytkownik, baza danych, itd.).
+- `src/classes` – klasy PHP (zaimplementowano klasę User).
 - `docker` – definicje kontenerów Nginx, PHP oraz bazy danych.
 
 ## Baza danych
