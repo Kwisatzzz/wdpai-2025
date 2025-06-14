@@ -29,6 +29,7 @@ Domyślna konfiguracja bazy danych znajduje się w `app/sql/schema.sql` i jest �
 - **Wylogowanie** – skrypt `logout.php` usuwa sesję użytkownika.
 - **Responsywny interfejs** – proste style w `assets/css/style.css` oraz skrypty JS do obsługi edycji i menu.
 - **Placeholder** pod panel "AI Assistant" i stronę "Upgrade to Pro" (niezaimplementowane w aktualnej wersji).
+- **AI Assistant** – funkcja w przygotowaniu. Strona informuje, że będzie dostępna wkrótce dla użytkowników Pro.
 
 ## Struktura katalogów
 
@@ -41,6 +42,12 @@ Domyślna konfiguracja bazy danych znajduje się w `app/sql/schema.sql` i jest �
 
 Plik `app/sql/schema.sql` definiuje tabele użytkowników, ról, talii, fiszek oraz postępów w nauce. Kontener PostgreSQL inicjalizuje się na podstawie tego pliku.
 
----
+## Screenshoty
 
-Projekt ma charakter edukacyjny i znajduje się w wersji beta.
+| Widok | Zrzut ekranu |
+|-------|--------------|
+| Ekran logowania | ![Logowanie](docs/images/login.png) |
+| Dashboard użytkownika | ![Dashboard](docs/images/dashboard.png) |
+| Lista moich talii | ![Moje talie](docs/images/my_decks.png) |
+| Edycja talii i fiszek | ![Widok talii](docs/images/deck_view.png) |
+| Tryb nauki | ![Nauka](docs/images/study.png) |
