@@ -42,6 +42,14 @@ Domyślna konfiguracja bazy danych znajduje się w `app/sql/schema.sql` i jest �
 
 Plik `app/sql/schema.sql` definiuje tabele użytkowników, ról, talii, fiszek oraz postępów w nauce. Kontener PostgreSQL inicjalizuje się na podstawie tego pliku.
 
+## JavaScript i Fetch API
+
+Skrypt `src/public/assets/js/flashcards.js` wykorzystuje funkcję `fetch` do asynchronicznej edycji i usuwania fiszek, co pozwala na obsługę bez przeładowywania strony.
+
+## Bezpieczeństwo
+
+Hasła użytkowników przechowujemy wyłącznie w postaci skrótów wygenerowanych przez `password_hash`. Podczas logowania stosowana jest funkcja `password_verify`, dzięki czemu oryginalne hasła nigdy nie są zapisywane w bazie.
+
 ## Screenshoty
 
 | Widok | Zrzut ekranu |
