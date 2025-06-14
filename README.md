@@ -42,6 +42,10 @@ Domyślna konfiguracja bazy danych znajduje się w `app/sql/schema.sql` i jest �
 
 Plik `app/sql/schema.sql` definiuje tabele użytkowników, ról, talii, fiszek oraz postępów w nauce. Kontener PostgreSQL inicjalizuje się na podstawie tego pliku.
 
+Poniższy diagram przedstawia schemat bazy danych aplikacji:
+
+![ERD](docs/images/erd.png)
+
 ## JavaScript i Fetch API
 
 Skrypt `src/public/assets/js/flashcards.js` wykorzystuje funkcję `fetch` do asynchronicznej edycji i usuwania fiszek, co pozwala na obsługę bez przeładowywania strony.
