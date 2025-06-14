@@ -23,7 +23,7 @@
   <div class="header-right">
     <a class="logout-link" href="logout.php">Logout</a>
     <div class="avatar">
-      <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Avatar" />
+      <img src="https://ui-avatars.com/api/?name=u" alt="Avatar" />
     </div>
   </div>
 </header>
