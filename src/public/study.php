@@ -115,17 +115,17 @@ include '../includes/header.php';
       <?php if ($index < $total - 1): ?>
         <form method="post" style="display: flex; gap: 10px;">
           <input type="hidden" name="card_id" value="<?php echo $current['card_id']; ?>">
-          <button name="rate" value="bad" style="background: #ef4444; color: white; border: none; padding: 10px 16px; border-radius: 6px;">Bad</button>
-          <button name="rate" value="ok" style="background: #facc15; color: black; border: none; padding: 10px 16px; border-radius: 6px;">Ok</button>
-          <button name="rate" value="good" style="background: #10b981; color: white; border: none; padding: 10px 16px; border-radius: 6px;">Good</button>
+          <button name="rate" value="bad">Bad</button>
+          <button name="rate" value="ok">Ok</button>
+          <button name="rate" value="good">Good</button>
         </form>
       <?php else: ?>
         <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
           <a href="study.php?deck_id=<?php echo $deck_id; ?>&i=0">
-            <button style="background: #4f46e5; color: white; padding: 10px 16px; border: none; border-radius: 6px;">🔁 Again</button>
+            <button >🔁 Again</button>
           </a>
           <a href="my_decks.php">
-            <button style="background: #9ca3af; color: black; padding: 10px 16px; border: none; border-radius: 6px;">📚 See other decks</button>
+            <button >📚 See other decks</button>
           </a>
         </div>
       <?php endif; ?>
