@@ -1,6 +1,6 @@
 # FlashAI
 
-Aplikacja do nauki z wykorzystaniem fiszek, przygotowana w ramach zajęć z WdPAI. Projekt korzysta z kontenerów Docker (Nginx, PHP-FPM oraz PostgreSQL) i pozwala na tworzenie talii, dodawanie fiszek oraz przeprowadzanie nauki w oparciu o prosty algorytm powtórek.
+Aplikacja do nauki z wykorzystaniem fiszek, przygotowana w ramach zajęć z WdPAI. Projekt korzysta z kontenerów Docker (Nginx, PHP oraz PostgreSQL) i pozwala na tworzenie talii, dodawanie fiszek oraz przeprowadzanie nauki w oparciu o prosty algorytm powtórek.
 
 ## Wymagania
 
